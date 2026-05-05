@@ -2,8 +2,4 @@
 name = "useless-copier"
 version = "0.0.1"
 
-dependencies = [
-    "pyobjc",
-    "briefcase",
-    "toga",
-]
+dependencies = ["briefcase", "watchdog"]
