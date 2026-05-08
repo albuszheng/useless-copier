@@ -1,16 +1,8 @@
 # import sys
-import logging
 import os
+from logger import logger
 from pathlib import Path
 from shutil import copy2
-
-logging.basicConfig(
-    filename="copier.log", format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
-logger = logging.getLogger()
-
-logger.setLevel(logging.DEBUG)
 
 
 def copy_file(source: str, target: str) -> None:
@@ -66,4 +58,7 @@ def directory_walk(source: str, target: str) -> None:
                     copy_file(str(root / file), str(target_path))
     else:
         # TODO: if the source is not a directory, should raise an error
-        pass
+        logger.error(
+            f"The path for the source directory should be an directory: {source}"
+        )
+        raise NotADirectoryError
