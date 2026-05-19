@@ -37,7 +37,6 @@ def directory_walk(source: str, target: str) -> None:
     source directory to the target directory
 
     TODO: error handling with the Path.walk
-    TODO: Further testing on a more complex directory structure
 
     :param source: Path to the source directory
     :param target: Path to the target directory
@@ -57,7 +56,7 @@ def directory_walk(source: str, target: str) -> None:
                     target_path.parent.mkdir(parents=True, exist_ok=True)
                     copy_file(str(root / file), str(target_path))
     else:
-        # TODO: if the source is not a directory, should raise an error
+        # if the source is not a directory, should raise an error
         logger.error(
             f"The path for the source directory should be an directory: {source}"
         )
