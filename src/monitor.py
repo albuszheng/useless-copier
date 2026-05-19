@@ -20,7 +20,7 @@ class DirModifiedHandler(FileSystemEventHandler):
         self.target = target_dir
 
     def on_modified(self, event: DirModifiedEvent | FileModifiedEvent) -> None:
-        if type(event) == DirModifiedEvent:
+        if isinstance(event,DirModifiedEvent):
             print(f"Directory changed, event: {event}")
             logger.info(f"Directory changed, event: {event}")
             print("Start copying from source to target")
@@ -33,16 +33,3 @@ class DirModifiedHandler(FileSystemEventHandler):
                 print("Start copying from source to target")
                 directory_walk(self.source, self.target)
                 print("End copying")
-
-if __name__ == "__main__":
-    PATH = '/Users/albsun/Documents/testing/from/'
-    event_handler = DirModifiedHandler()
-    observer = Observer()
-    observer.schedule(event_handler, path=PATH, recursive=True)
-    observer.start()
-    try:
-        while True:
-            time.sleep(600)
-    finally:
-        observer.stop()
-        observer.start()
