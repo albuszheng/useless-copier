@@ -16,8 +16,8 @@ if __name__ == "__main__":
     observer.schedule(event_handler_src, path=TESTING_DEST, recursive=True)
     observer.start()
     try:
-        while True:
-            time.sleep(600)
+        while observer.is_alive():
+            observer.join()
     finally:
         observer.stop()
         observer.start()

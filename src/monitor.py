@@ -11,7 +11,7 @@ from logger import logger
 # If the content of the file changes, only FileModifiedEvent is triggered.
 # If a new file is created, a DirmodifiedEvent is triggered.
 # When openning a file in vscode (maybe other editors, too), a FileModifiedEvent is triggered
-# When pasting a file in the montiered directory (from copy or move), a DirModifiedEvent will be triggered
+# When pasting a file in the montiered directory (from copy or move), a DirModifiedEvent will be triggered and a FileModifiedEvent is triggered
 #
 # One idea, maybe this sync tool don't need to do real time monitor, I think check in every 15 minutes to see if any file has changed.
 class DirModifiedHandler(FileSystemEventHandler):
@@ -26,12 +26,12 @@ class DirModifiedHandler(FileSystemEventHandler):
             print(f"Directory changed, event: {event}")
             logger.info(f"Directory changed, event: {event}")
             print("Start copying from source to target")
-            # directory_walk(self.source, self.target)
+            directory_walk(self.source, self.target)
             print("End copying")
         else:
             print(f"file change event: {event}")
             if not event.src_path.endswith("/.DS_Store"):
                 logger.info(f"file changed, event: {event}")
                 print("Start copying from source to target")
-                # directory_walk(self.source, self.target)
+                directory_walk(self.source, self.target)
                 print("End copying")
