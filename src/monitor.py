@@ -41,7 +41,7 @@ class DirModifiedHandler(FileSystemEventHandler):
             directory_walk(self.source, self.target)
             print("End copying")
         else:
-            print(f"file change event: {event}")
+            print(f'file change event: {event}')
             if not event.src_path.endswith("/.DS_Store"):
                 logger.info(f"file changed, event: {event}")
                 print("Start copying from source to target")
